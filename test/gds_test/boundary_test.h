@@ -8,13 +8,20 @@ class BoundaryTest : public QObject
 {
     Q_OBJECT
 private slots:
-    void test_boundingRect()
+    void test_boundary()
     {
         gds::Boundary polygon(nullptr);
 
+        polygon.setEflags(2);
+        QVERIFY(polygon.getEflags() == 2);
+
+        polygon.setLayer(1, 0);
+        QVERIFY(polygon.getLayerNum() == 1);
+        QVERIFY(polygon.getDt() == 0);
+
+
         QVector<QPoint> pts = { QPoint(0, 0), QPoint(5, 0), QPoint(5, 5), QPoint(0, 0)};
         polygon.setPoints(pts);
-        QRect box = polygon.boundingRect();
         QVERIFY(polygon.boundingRect() == QRect(QPoint(0, 0), QPoint(5, 5)));
     }
 };

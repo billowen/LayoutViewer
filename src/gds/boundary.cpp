@@ -1,6 +1,5 @@
 #include "boundary.h"
 #include "structure.h"
-#include <QPolygon>
 
 
 gds::Boundary::Boundary(gds::Structure *parent)
@@ -56,24 +55,22 @@ short gds::Boundary::getDt() const
 
 QRect gds::Boundary::boundingRect() const
 {
-//    if (_pts.size() < 4) {
-//        return QRect(0, 0, 0, 0);
-//    }
-//    int x1 = _pts[0].x();
-//    int y1 = _pts[0].y();
-//    int x2 = _pts[0].x();
-//    int y2 = _pts[0].y();
+    if (_pts.size() < 4) {
+        return QRect(0, 0, 0, 0);
+    }
+    int x1 = _pts[0].x();
+    int y1 = _pts[0].y();
+    int x2 = _pts[0].x();
+    int y2 = _pts[0].y();
 
-//    for (auto p : _pts) {
-//        x1 = x1 < p.x() ? x1 : p.x();
-//        y1 = y1 < p.y() ? y1 : p.y();
-//        x2 = x2 > p.x() ? x2 : p.x();
-//        y2 = y2 > p.y() ? y2 : p.y();
-//    }
+    for (auto p : _pts) {
+        x1 = x1 < p.x() ? x1 : p.x();
+        y1 = y1 < p.y() ? y1 : p.y();
+        x2 = x2 > p.x() ? x2 : p.x();
+        y2 = y2 > p.y() ? y2 : p.y();
+    }
 
-//    return QRect(QPoint(x1, y1), QPoint(x2, y2));
-    QPolygon p(_pts);
-    return p.boundingRect();
+    return QRect(QPoint(x1, y1), QPoint(x2, y2));
 }
 
 
