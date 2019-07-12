@@ -1,4 +1,5 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    src/gds
+    src/gds \
+    test/gds_test
